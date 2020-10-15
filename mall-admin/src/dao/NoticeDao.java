@@ -31,7 +31,7 @@ import commons.DBUtil;
 			return notice;
 		}
 		//전체리스트 출력
-		public ArrayList<Notice> selectNoticeListAll() throws Exception {
+		public ArrayList<Notice> selectNoticeList() throws Exception {
 			ArrayList<Notice> list = new ArrayList<Notice>();
 			DBUtil dbUtil = new DBUtil();
 			Connection conn = dbUtil.getConnection();
@@ -50,4 +50,35 @@ import commons.DBUtil;
 			conn.close();
 			return list;
 		}
+		
+		public Notice insertNotice(Notice notice) throws Exception {
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = dbUtil.getConnection(); //DBUtil 메소드를 호출하여 DB주소값을 호출한다
+			String sql = "insert into notice(notice_id,notice_title,notice_contnent,notice_date) values(?,?,now())";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+		
+			stmt.setString(1, notice.noticeTitle);
+			stmt.setString(2, notice.noticeContent);
+			
+			stmt.executeUpdate();
+			
+			
+			return notice;
+		}
+		
+		public void updateNotice(Notice notice) throws Exception{
+			//데이터 베이스 연결
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = dbUtil.getConnection();
+			//sql문
+			String sql ="update notice set notice_title = ?, notice_content = ?, notice_date = now() where notice_id = ?";
+			//데이터베이스 접속
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, notice.getNoticeTitle());
+			stmt.setString(2, notice.getNoticeContent());
+			stmt.setInt(3, notice.getNoticeId());
+			//결과 수정
+			stmt.executeLargeUpdate();
+		}
+		
 }

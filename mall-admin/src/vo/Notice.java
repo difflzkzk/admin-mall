@@ -29,4 +29,5 @@ public class Notice {
 	public void setNoticeDate(String noticeDate) {
 		this.noticeDate = noticeDate;
 	}
+	
 }

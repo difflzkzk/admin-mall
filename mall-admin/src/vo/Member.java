@@ -5,6 +5,7 @@ public class Member {
 	public String memberPw;
 	public String memberName;
 	public String memberDate;
+	public String memberEamil;
 	
 	public String getMemberEmail() {
 		return memberEmail;

@@ -18,7 +18,7 @@
 <%
 		request.setCharacterEncoding("utf-8");
 		NoticeDao noticeDao = new NoticeDao();
-		ArrayList<Notice>list = noticeDao.selectNoticeListAll();
+		ArrayList<Notice>list = noticeDao.selectNoticeList();
 %>
 	<table class="table">
 		<thead>
@@ -44,7 +44,9 @@
 			}
 		%>	
 		</tbody>
-		<a href="" class="btn btn-info text-white " role="button" >공지사항 작성</a>
+		<tr>
+		<td><a href="/mall-admin/notice/noticeListAction.jsp" class="btn btn-info text-white" role="button">공지 작성</a></td>
+		</tr>
 	</table>
 
 <div>
